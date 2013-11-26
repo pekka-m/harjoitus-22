@@ -37,6 +37,8 @@ struct HENKREK {
 
 int Valikko();
 void TulostaHenkilo(HENKREK);
+void TulostaKaikkiHenkilot(HENKREK [], int);
+void LisaaHenkilo(HENKREK [], int *lkm);
 
 int main() {
 
@@ -44,7 +46,7 @@ int main() {
 	int henkilolkm = 0;
 	int valinta = 1;
 
-	for (henkilolkm; valinta != 0; henkilolkm++) {
+	while (valinta != 0) {
 
 		valinta = Valikko();
 
@@ -53,18 +55,16 @@ int main() {
 			break;
 		}
 		else if (valinta == 1) {
-			cout << "Anna henkilon tiedot muodossa etunimi koulumatka hatun koko: ";
-			cin >> henkilot[henkilolkm].etunimi >> henkilot[henkilolkm].koulumatka>> henkilot[henkilolkm].hattu;
-			cout << endl;
+
+			LisaaHenkilo(henkilot, &henkilolkm);
+
 		}
 		else if (valinta == 2) {
-
-
-
-			for (int ind = 0; ind < henkilolkm; ind++) {
-				cout << endl << henkilot[ind].etunimi << " " << henkilot[ind].koulumatka << " " << henkilot[ind].hattu << endl;
-			}
+			TulostaKaikkiHenkilot(henkilot, henkilolkm);
 			cout << endl;
+		}
+		else if (valinta == 3) {
+			TulostaHenkilo(henkilot[0]);
 		}
 		else {
 			cout << "\n\nFATAL EXCEPTION HAS OCCURRED\n\n";
@@ -78,11 +78,24 @@ int Valikko() {
 	cout << "VALIKKO\n"
 		<< "0 Lopeta\n"
 		<< "1 Lisaa henkilo\n"
-		<< "2 Nayta kaikki henkilot\n";
+		<< "2 Nayta kaikki henkilot\n"
+		<< "3 Nayta joku henkilo\n";
 	cin >> valinta;
 	return valinta;
 }
 
-void TulostaHenkilo(HENKREK) {
+void TulostaHenkilo(HENKREK henkilo) {
+	cout << endl << henkilo.etunimi << " " << henkilo.koulumatka << " " << henkilo.hattu << "\n\n";
+}
 
+void TulostaKaikkiHenkilot(HENKREK kaikkihenkilot [], int henkilolkm) {
+	for (int ind = 0; ind < henkilolkm; ind++) {
+		cout << endl << kaikkihenkilot[ind].etunimi << " " << kaikkihenkilot[ind].koulumatka << " " << kaikkihenkilot[ind].hattu << endl;
+	}
+}
+void LisaaHenkilo(HENKREK henkilo[], int *lkm) {
+	cout << "Anna henkilon tiedot muodossa etunimi koulumatka hatun koko: ";
+	cin >> henkilo[*lkm].etunimi >> henkilo[*lkm].koulumatka>> henkilo[*lkm].hattu;
+	(*lkm)++;
+	cout << endl;
 }

@@ -78,7 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="harj22.cpp" />
+    <ClCompile Include="ali.cpp" />
+    <ClCompile Include="paa.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="maarittely.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
